@@ -17,8 +17,6 @@ int main(void){
 
   mult_tres_cinco(val1, val2);
 
-  std:: cout << "\n";
-
   return 0;
 }
 
