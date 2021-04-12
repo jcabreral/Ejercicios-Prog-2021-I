@@ -1,4 +1,3 @@
-// bisection example
 #include <iostream>
 #include <cstdlib>
 #include <cmath>
@@ -43,7 +42,6 @@ double bisection(double xl, double xu, double eps, fptr fun, int & nsteps)
     while (1) {
         xr = 0.5*(xl + xu);
         nsteps++;
-        //std::cout << xr << "\n";
         if (std::fabs(fun(xr)) < eps) {
             break;
         } else if (fun(xl)*fun(xr) < 0) {
@@ -51,7 +49,6 @@ double bisection(double xl, double xu, double eps, fptr fun, int & nsteps)
         } else {
             xl = xr;
         }
-        //std::cout << xl << "\t" << xu << "\n";
     }
     return xr;
 }
