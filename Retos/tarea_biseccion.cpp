@@ -20,7 +20,7 @@ int main (int argc, char *argv[])
     double eps = std::atof(argv[3]);
     std::cout.precision(15); std::cout.setf(std::ios::scientific);
     int steps = 0;
-    double B = 110;
+    double B = 110.0;
     
     while(M <= B){
         double root = bisection(XL, XU, eps, f, steps);
