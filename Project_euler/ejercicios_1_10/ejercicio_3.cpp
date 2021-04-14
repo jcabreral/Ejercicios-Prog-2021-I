@@ -4,7 +4,7 @@
 /*Los factores primos de 13195 son 5, 7, 13 y 29.
 
 ¿Cuál es el factor primo más grande del número 600851475143?*/
-/*Soprepasa la capacidad de computo de Repl.it y no lo corre, en Dev lo corre y da el resultado correcto pero también se queda colgado y no termina la ejecución del problema*/
+
 void primos(long long int numa);
 
 int main(void){
