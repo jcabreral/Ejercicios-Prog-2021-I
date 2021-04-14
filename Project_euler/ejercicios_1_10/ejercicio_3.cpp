@@ -1,4 +1,5 @@
 #include <iostream>
+#include<cmath>
 
 /*Los factores primos de 13195 son 5, 7, 13 y 29.
 
@@ -22,7 +23,7 @@ void primos(long long int numa){
 
   long long int i = 2, mayor = 0; 
   long long int n = numa;
-  while(i <= numa){
+  while(i <= std::sqrt(numa)){
     
     if(n % i == 0){
       std::cout<<i<<" ";
