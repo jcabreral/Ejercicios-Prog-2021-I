@@ -14,14 +14,13 @@ int main (int argc, char *argv[])
 {
     double X0 = std::atof(argv[1]);
     double eps = std::atof(argv[2]);
-    int NMAX = 10;
+    int NMAX = 3;
     std::cout.precision(15); std::cout.setf(std::ios::scientific);
-    int steps = 0;
+    int steps = 1000;
     double rootfp, rootn;
     rootfp = fixedpoint(X0, eps, g, NMAX, steps);
-    rootn = newton(X0, eps, f, fderiv, NMAX, steps);
-
     std::cout <<"Método del punto fijo: " << rootfp << "\t" << steps << "\n";
+    rootn = newton(X0, eps, f, fderiv, NMAX, steps);
     std::cout <<"Método de Newton: " << rootn << "\t" << steps << "\n";
 
     return 0;
