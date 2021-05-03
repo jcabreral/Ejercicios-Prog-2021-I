@@ -37,9 +37,8 @@ int main(int argc, char *argv[]) {
         forces(points);
         timestep(points);
         std::cout << tstep*DT << "\t"
-                  << points[0].y << "\t"
-                  << points[0].vy << std::endl; 
-        
+                << points[0].y << "\t"
+                << points[0].vy << std::endl;
     }
     
     return 0;
@@ -55,16 +54,20 @@ void timestep(std::vector<Particle> & particles)
 
 void forces(std::vector<Particle> & particles)
 {
-    // reset force
     for(auto & body: particles) {
         body.fy = 0.0;
         body.fpiso = 0.0;
 
     }
-    // add gravitationl force
+    
     for(auto & body: particles) {
         double delta = body.rad - body.y;
-        body.fy -= body.mass*G;
+        if(body.y > 0.17){
+            body.fy -= body.mass*G;
+        }
+        else{
+            body.fy += body.mass*G;
+        }
         if(delta > 0){
             body.fpiso += K*delta;
         }    
