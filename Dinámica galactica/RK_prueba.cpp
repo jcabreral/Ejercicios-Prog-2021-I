@@ -12,41 +12,48 @@ void Rk(fptr f1, fptr f2, double h, double tini, double tfinal, double xini, dou
 
 int main()
 {
-    Rk(f1, f2, 1.0, 0.0, 46.0, 1.0, 0.0);
+    double h = 1;
+    double ti = 0.0;
+    double tf = 60.0;
+    double xi = 1.0;
+    double yi = 0.0; 
+    Rk(f1, f2, h, ti, tf, xi, yi);
     return 0;
 } 
 
 double f1(double t, double x, double y)
 {
     return -0.1*x;
+    //return 3*x - 9*y;
 }
 double f2(double t, double x, double y)
 {
     return 0.1*x - 0.09*y;
+    //return 2*x - 3*y;
 }
 void Rk(fptr f1, fptr f2, double h, double tini, double tfinal, double xini, double yini)
 {
     double temp;
-    std::vector<double> t, x, y, k(4), l(4);
+    std::vector<double> t, x, y, k1(2), k2(2), k3(2), k4(2);
 
     while(tini <= tfinal)
     {
         t.push_back(tini);
         x.push_back(xini);
         y.push_back(yini);
-        k[0] = f1(tini, xini, yini);
-        l[0] = f2(tini, xini, yini);
-        k[1] = f1(tini + h*0.5, xini + k[0]*h*0.5, yini + l[0]*h*0.5);
-        l[1] = f2(tini + h*0.5, xini + k[0]*h*0.5, yini + l[0]*h*0.5);
-        k[2] = f1(tini + h*0.5, xini + k[1]*h*0.5, yini + l[1]*h*0.5);
-        l[2] = f2(tini + h*0.5, xini + k[1]*h*0.5, yini + l[1]*h*0.5);
-        k[3] = f1(tini + h*0.5, xini + k[2]*h, yini + l[2]*h);
-        l[3] = f2(tini + h*0.5, xini + k[2]*h, yini + l[2]*h);
+        k1[0] = f1(tini, xini, yini);
+        k1[1] = f2(tini, xini, yini);
+        k2[0] = f1(tini + h*0.5, xini + k1[0]*h*0.5, yini + k1[1]*h*0.5);
+        k2[1] = f2(tini + h*0.5, xini + k1[0]*h*0.5, yini + k1[1]*h*0.5);
+        k3[0] = f1(tini + h*0.5, xini + k2[0]*h*0.5, yini + k2[1]*h*0.5);
+        k3[1] = f2(tini + h*0.5, xini + k2[0]*h*0.5, yini + k2[1]*h*0.5);
+        k4[0] = f1(tini + h*0.5, xini + k3[0]*h, yini + k3[1]*h);
+        k4[1] = f2(tini + h*0.5, xini + k3[0]*h, yini + k3[1]*h);
         tini += h;
         temp = xini;
-        xini = temp + (h/6)*(k[0] + 2*k[1] +2*k[2] + k[3]);
+        xini = temp + (h/6)*(k1[0] + 2*k2[0] +2*k3[0] + k4[0]);
         temp = yini;
-        yini = temp + (h/6)*(l[0] + 2*l[1] +2*l[2] + l[3]);
+        yini = temp + (h/6)*(k1[1] + 2*k2[1] +2*k3[1] + k4[1]);
     }
 
     int N = h*tfinal;
