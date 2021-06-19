@@ -10,8 +10,6 @@ const double a = 1.25;
 const double b = 1.0;
 const double c = 0.75;
 
-using fptr = double (double, double, double);
-
 //Funciones
 double H(double x, double y, double z, double px, double py, double pz);
 double dx(double x, double y, double z, double px, double py, double pz);
